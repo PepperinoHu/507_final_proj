@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8"/>
+    <title>Search Form 1</title>
+</head>
+
+<body>
+  <form action="/handle_form" method="POST">
+    <p>
+        What's your name(required)? <input name="name" type="text"/><br/><br/><br/>
+    </p>
+<p>
+To search for a specific restaurant, you need to input the restaurant name. The response will contain basic information of the restaurant, the menu and customer reviews. 
+</p>
+<p>
+        Please enter restaurant name<input name="restaurant" type="text"/><br/><br/><br/>
+    </p>
+<p>
+Leave the restaurant name blank to search for restaurants in a city/state, or near a geolocation. The response will contain 5 best matches according to your selected sort-by method, each containing basic information of the restaurant, and its customer reviews.  
+</p>
+        <p>
+        Please enter the state/city you want to search in(optional if geolocation is provided). <input name="location" type="text"/><br/><br/><br/>
+    </p>
+    <p>
+        Please enter latitude and longtitude of a location you want to search in(optional if city/state is provided). 
+</p>
+  <p>
+Latitude: <input name="latitude" type="text"/>Longtitude: <input name="longtitude" type="text"/><br/><br/><br/>
+    </p>
+ <p>
+Please enter categories of the restaurants, separated by comma(optional). Please use the restaurant category names from <a href="https://www.yelp.com/developers/documentation/v3/all_category_list"> Yelp All Category List</a>.
+</p>
+ <p>
+<input name="categories" type="text"/>
+</p>
+    <p>
+        Sort the results by(required)?<br>
+        <input type="radio" name="sort_by" value="best_match">Best match<br/>
+        <input type="radio" name="sort_by" value="rating">Rating<br/>
+<input type="radio" name="sort_by" value="review_count">Review Count<br/>
+<input type="radio" name="sort_by" value="distance">Distance<br/>
+    </p>
+
+    <input type="submit" value="Submit Form"/>
+  </form>  
+</body>
+
+</html>

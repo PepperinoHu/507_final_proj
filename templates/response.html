@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8"/>
+    <title>HTML Form 1 Response</title>
+</head>
+<body>
+    <h1>Thank you!</h1>
+    <p>Thanks for filling out our form, {{name}}! </p>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-c3ow">Name</th>
+    <th class="tg-c3ow">Review Count</th>
+    <th class="tg-c3ow">Location</th>
+    <th class="tg-c3ow">Price</th>
+    <th class="tg-c3ow">Cuisines</th>
+    <th class="tg-c3ow">Hours</th>
+    <th class="tg-baqh">Picture</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">{{req[0]['name']}}</td>
+    <td class="tg-c3ow">{{req[0]['review_count']}}</td>
+    <td class="tg-c3ow">{{req[0]['location']}}</td>
+    <td class="tg-c3ow">{{req[0]['price']}}</td>
+    <td class="tg-c3ow">{{req[0]['cuisines']}}</td>
+    <td class="tg-c3ow">{{req[0]['hours']}}</td>
+    <td class="tg-baqh"><img src={{req[0]['image_url']}} alt="alternatetext" style="width:250px;height:300px;"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">{{req[1]['name']}}</td>
+    <td class="tg-c3ow">{{req[1]['review_count']}}</td>
+    <td class="tg-c3ow">{{req[1]['location']}}</td>
+    <td class="tg-c3ow">{{req[1]['price']}}</td>
+    <td class="tg-c3ow">{{req[1]['cuisines']}}</td>
+    <td class="tg-c3ow">{{req[1]['hours']}}</td>
+    <td class="tg-baqh"><img src={{req[1]['image_url']}} alt="alternatetext" style="width:250px;height:300px;"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">{{req[2]['name']}}</td>
+    <td class="tg-c3ow">{{req[2]['review_count']}}</td>
+    <td class="tg-c3ow">{{req[2]['location']}}</td>
+    <td class="tg-c3ow">{{req[2]['price']}}</td>
+    <td class="tg-c3ow">{{req[2]['cuisines']}}</td>
+    <td class="tg-c3ow">{{req[2]['hours']}}</td>
+    <td class="tg-baqh"><img src={{req[2]['image_url']}} alt="alternatetext" style="width:250px;height:300px;"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">{{req[3]['name']}}</td>
+    <td class="tg-c3ow">{{req[3]['review_count']}}</td>
+    <td class="tg-c3ow">{{req[3]['location']}}</td>
+    <td class="tg-c3ow">{{req[3]['price']}}</td>
+    <td class="tg-c3ow">{{req[3]['cuisines']}}</td>
+    <td class="tg-c3ow">{{req[3]['hours']}}</td>
+    <td class="tg-baqh"><img src={{req[3]['image_url']}} alt="alternatetext" style="width:250px;height:300px;"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">{{req[4]['name']}}</td>
+    <td class="tg-c3ow">{{req[4]['review_count']}}</td>
+    <td class="tg-c3ow">{{req[4]['location']}}</td>
+    <td class="tg-c3ow">{{req[4]['price']}}</td>
+    <td class="tg-c3ow">{{req[4]['cuisines']}}</td>
+    <td class="tg-c3ow">{{req[4]['hours']}}</td>
+    <td class="tg-baqh"><img src={{req[4]['image_url']}} alt="alternatetext" style="width:250px;height:300px;"></td>
+  </tr>
+</tbody>
+</table>
+
+
+<p>
+Here are reviews for restaurant {{req[0]['name']}}: 
+</p>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ao2g">Name</th>
+    <th class="tg-ao2g">Rating</th>
+    <th class="tg-ao2g">Time Created</th>
+    <th class="tg-ao2g">Review</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-de2y">{{req[0]['reviews'][0]['name']}}</td>
+    <td class="tg-de2y">{{req[0]['reviews'][0]['rating']}}</td>
+    <td class="tg-de2y">{{req[0]['reviews'][0]['time_created']}}</td>
+    <td class="tg-de2y">{{req[0]['reviews'][0]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[0]['reviews'][1]['name']}}</td>
+    <td class="tg-0lax">{{req[0]['reviews'][1]['rating']}}</td>
+    <td class="tg-0lax">{{req[0]['reviews'][1]['time_created']}}</td>
+    <td class="tg-0lax">{{req[0]['reviews'][1]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[0]['reviews'][2]['name']}}</td>
+    <td class="tg-0lax">{{req[0]['reviews'][2]['rating']}}</td>
+    <td class="tg-0lax">{{req[0]['reviews'][2]['time_created']}}</td>
+    <td class="tg-0lax">{{req[0]['reviews'][2]['text']}}</td>
+  </tr>
+</tbody>
+</table>
+
+<p>
+Here are reviews for restaurant {{req[1]['name']}}: 
+</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ao2g">Name</th>
+    <th class="tg-ao2g">Rating</th>
+    <th class="tg-ao2g">Time Created</th>
+    <th class="tg-ao2g">Review</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-de2y">{{req[1]['reviews'][0]['name']}}</td>
+    <td class="tg-de2y">{{req[1]['reviews'][0]['rating']}}</td>
+    <td class="tg-de2y">{{req[1]['reviews'][0]['time_created']}}</td>
+    <td class="tg-de2y">{{req[1]['reviews'][0]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[1]['reviews'][1]['name']}}</td>
+    <td class="tg-0lax">{{req[1]['reviews'][1]['rating']}}</td>
+    <td class="tg-0lax">{{req[1]['reviews'][1]['time_created']}}</td>
+    <td class="tg-0lax">{{req[1]['reviews'][1]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[1]['reviews'][2]['name']}}</td>
+    <td class="tg-0lax">{{req[1]['reviews'][2]['rating']}}</td>
+    <td class="tg-0lax">{{req[1]['reviews'][2]['time_created']}}</td>
+    <td class="tg-0lax">{{req[1]['reviews'][2]['text']}}</td>
+  </tr>
+</tbody>
+</table>
+
+<p>
+Here are reviews for restaurant {{req[2]['name']}}: 
+</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ao2g">Name</th>
+    <th class="tg-ao2g">Rating</th>
+    <th class="tg-ao2g">Time Created</th>
+    <th class="tg-ao2g">Review</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-de2y">{{req[2]['reviews'][0]['name']}}</td>
+    <td class="tg-de2y">{{req[2]['reviews'][0]['rating']}}</td>
+    <td class="tg-de2y">{{req[2]['reviews'][0]['time_created']}}</td>
+    <td class="tg-de2y">{{req[2]['reviews'][0]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[2]['reviews'][1]['name']}}</td>
+    <td class="tg-0lax">{{req[2]['reviews'][1]['rating']}}</td>
+    <td class="tg-0lax">{{req[2]['reviews'][1]['time_created']}}</td>
+    <td class="tg-0lax">{{req[2]['reviews'][1]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[2]['reviews'][2]['name']}}</td>
+    <td class="tg-0lax">{{req[2]['reviews'][2]['rating']}}</td>
+    <td class="tg-0lax">{{req[2]['reviews'][2]['time_created']}}</td>
+    <td class="tg-0lax">{{req[2]['reviews'][2]['text']}}</td>
+  </tr>
+</tbody>
+</table>
+
+
+<p>
+Here are reviews for restaurant {{req[3]['name']}}: 
+</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ao2g">Name</th>
+    <th class="tg-ao2g">Rating</th>
+    <th class="tg-ao2g">Time Created</th>
+    <th class="tg-ao2g">Review</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-de2y">{{req[3]['reviews'][0]['name']}}</td>
+    <td class="tg-de2y">{{req[3]['reviews'][0]['rating']}}</td>
+    <td class="tg-de2y">{{req[3]['reviews'][0]['time_created']}}</td>
+    <td class="tg-de2y">{{req[3]['reviews'][0]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[3]['reviews'][1]['name']}}</td>
+    <td class="tg-0lax">{{req[3]['reviews'][1]['rating']}}</td>
+    <td class="tg-0lax">{{req[3]['reviews'][1]['time_created']}}</td>
+    <td class="tg-0lax">{{req[3]['reviews'][1]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[3]['reviews'][2]['name']}}</td>
+    <td class="tg-0lax">{{req[3]['reviews'][2]['rating']}}</td>
+    <td class="tg-0lax">{{req[3]['reviews'][2]['time_created']}}</td>
+    <td class="tg-0lax">{{req[3]['reviews'][2]['text']}}</td>
+  </tr>
+</tbody>
+</table>
+
+<p>
+Here are reviews for restaurant {{req[4]['name']}}: 
+</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ao2g{border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ao2g">Name</th>
+    <th class="tg-ao2g">Rating</th>
+    <th class="tg-ao2g">Time Created</th>
+    <th class="tg-ao2g">Review</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-de2y">{{req[4]['reviews'][0]['name']}}</td>
+    <td class="tg-de2y">{{req[4]['reviews'][0]['rating']}}</td>
+    <td class="tg-de2y">{{req[4]['reviews'][0]['time_created']}}</td>
+    <td class="tg-de2y">{{req[4]['reviews'][0]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[4]['reviews'][1]['name']}}</td>
+    <td class="tg-0lax">{{req[4]['reviews'][1]['rating']}}</td>
+    <td class="tg-0lax">{{req[4]['reviews'][1]['time_created']}}</td>
+    <td class="tg-0lax">{{req[4]['reviews'][1]['text']}}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">{{req[4]['reviews'][2]['name']}}</td>
+    <td class="tg-0lax">{{req[4]['reviews'][2]['rating']}}</td>
+    <td class="tg-0lax">{{req[4]['reviews'][2]['time_created']}}</td>
+    <td class="tg-0lax">{{req[4]['reviews'][2]['text']}}</td>
+  </tr>
+</tbody>
+</table>
+
+</body>
+</html>
