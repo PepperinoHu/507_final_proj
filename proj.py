@@ -108,36 +108,54 @@ def index():
 @app.route('/handle_form', methods=['POST'])
 def handle_the_form():
     user_name = request.form["name"]
+    if user_name == '':
+        return '''<html>
+ <head>
+ </head>
+ <body>
+   <h1>Please enter user name!<h1>
+ </body>
+</html> ''' 
     restaurant_name = request.form["restaurant"]
-    sort_by = request.form["sort_by"]
+    try:
+        sort_by = request.form["sort_by"]
+    except:
+        sort_by = 'best_match'
     location = request.form["location"]
     latitude = request.form["latitude"]
     longtitude = request.form['longtitude']
-
+    if ((location =='')&(latitude =='')&(longtitude =='')):
+        return '''<html>
+ <head>
+ </head>
+ <body>
+   <h1>Please enter location!<h1>
+ </body>
+</html> ''' 
+    categories = request.form['categories']
     if restaurant_name != '':
         if (latitude != '')&(longtitude != ''):
-            url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&latitude='+latitude+'&longitude='+longtitude+'&name='+restaurant_name
+            url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&latitude='+latitude+'&longitude='+longtitude+'&name='+restaurant_name+'&categories='+categories
             cache_dict = open_cache('yelp.json')
             try:
-                req = cache_dict['latitude='+latitude+'&longitude='+longtitude+'&name='+restaurant_name]
+                req = cache_dict['latitude='+latitude+'&longitude='+longtitude+'&name='+restaurant_name+'categories='+categories]
                 print('using cache')
             except:
                 print("searching with geolocation")
                 req=requests.get(url, headers=headers).json()
-                cache_dict['latitude='+latitude+'&longitude='+longtitude+'&name='+restaurant_name] = req
+                cache_dict['latitude='+latitude+'&longitude='+longtitude+'&name='+restaurant_name+'categories='+categories] = req
                 save_cache(cache_dict,'yelp.json')
         elif location != '':
-            print("searching by city/state")
-            params = {'term':'restaurants','location':location,'sort_by':sort_by}
+            params = {'term':'restaurants','location':location,'sort_by':sort_by,'name':restaurant_name,'categories':categories}
             cache_dict = open_cache('yelp.json')
             try:
-                req = cache_dict['location='+location+'sort_by'+sort_by]
+                req = cache_dict['location='+location+'sort_by='+sort_by+'name='+restaurant_name+'categories='+categories]
                 print('using cache')
             except:
                 req=requests.get(yelp_url, params=params, headers=headers).json()
-                cache_dict['location='+location+'sort_by'+sort_by] = req
+                cache_dict['location='+location+'sort_by='+sort_by+'name='+restaurant_name+'categories='+categories] = req
                 save_cache(cache_dict,'yelp.json')
-                print("searching with geolocation")
+                print("searching by city/state")
 
         result_dict = {}
         for business in req['businesses']:
@@ -147,6 +165,7 @@ def handle_the_form():
                 result_dict['review_count'] = business['review_count']
                 result_dict['image_url'] = business['image_url']
                 result_dict['rating']=business['rating']
+                result_dict['cuisines'] = ','.join([i['title'] for i in business['categories']])
                 try:
                     result_dict['price'] = business['price']
                 except:
@@ -181,7 +200,7 @@ def handle_the_form():
                     
                     result_dict['menu'] = json2html.convert(json = menu_response['result']['menus'])
                 try: 
-                    result_dict['cuisines'] =  (','.join(doc_response['data'][0]['cuisines']  ))
+                    result_dict['cuisines'] =  result_dict['cuisines'] + ','+(','.join(doc_response['data'][0]['cuisines']  ))
                 except: 
                     pass
                 try:   
@@ -237,43 +256,47 @@ def handle_the_form():
                     name=user_name, 
                     req=result_dict)
         
-        return render_template('response.html', 
-                    name=user_name, 
-                    req=result_dict)
+        return '''<html>
+ <head>
+ </head>
+ <body>
+   <h1>No match for chosen restaurant name, sorry!<h1>
+ </body>
+</html> ''' 
 
 
     
     if (latitude != '')&(longtitude != ''):
-        url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&latitude='+latitude+'&longitude='+longtitude+'&limit=5'
+        url = 'https://api.yelp.com/v3/businesses/search?term=restaurants&latitude='+latitude+'&longitude='+longtitude+'&limit=5'+'&sort_by'+sort_by+'&categories='+categories
         cache_dict = open_cache('yelp.json')
         try:
-            req = cache_dict['latitude='+latitude+'&longitude='+longtitude]
+            req = cache_dict['latitude='+latitude+'&longitude='+longtitude+'&sort_by'+sort_by+'&categories='+categories]
             print('using cache')
         except:
             print("searching with geolocation")
             req=requests.get(url, headers=headers).json()
-            cache_dict['latitude='+latitude+'&longitude='+longtitude] = req
+            cache_dict['latitude='+latitude+'&longitude='+longtitude+'&sort_by'+sort_by+'&categories='+categories] = req
             save_cache(cache_dict,'yelp.json')
     elif location != '':
         cache_dict = open_cache('yelp.json')
-        params = {'term':'restaurants','location':location,'limit':5,'sort_by':sort_by}
+        params = {'term':'restaurants','location':location,'limit':5,'sort_by':sort_by,'categories':categories}
         try:
-            req = cache_dict['location='+location+'sort_by'+sort_by]
+            req = cache_dict['location='+location+'sort_by='+sort_by+'categories='+categories]
             print('using cache')
         except:
             req=requests.get(yelp_url, params=params, headers=headers).json()
-            cache_dict['location='+location+'sort_by'+sort_by] = req
+            cache_dict['location='+location+'sort_by='+sort_by+'categories='+categories] = req
             save_cache(cache_dict,'yelp.json')
             print("searching with geolocation")   
 
     result_list = []
-    print(req['businesses'])
     for business in req['businesses']:
         result_dict = {}
         result_dict['name'] = business['name']
         result_dict['review_count'] = business['review_count']
         result_dict['image_url'] = business['image_url']
         result_dict['rating']=business['rating']
+        result_dict['cuisines'] = ','.join([i['title'] for i in business['categories']])
         try:
             result_dict['price'] = business['price']
         except:
@@ -313,7 +336,7 @@ def handle_the_form():
             save_cache(menu_dict, 'menus.json')
 
         try: 
-            result_dict['cuisines'] =  (','.join(doc_response['data'][0]['cuisines']  ))
+            result_dict['cuisines'] =  result_dict['cuisines'] + ','+(','.join(doc_response['data'][0]['cuisines']  ))
         except: 
             pass
         try:   
