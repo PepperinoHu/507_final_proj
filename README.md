@@ -1,4 +1,6 @@
 # Readme for SI507 Final Project: Simple Restaurant Search
+## Package Requirements
+The following Python packages/libraries are required to run my program: json, flask, requests, os, json2html and sqlite3.
 ## Supplying API Keys
 API keys are required for both Yelp Fusion and Documenu APIs. The keys have to be applied for on the respective websites.  
 To use Yelp Fusion API, you need to include a header in your GET request, in the form of headers = {'Authorization': 'Bearer %s' % YELP_KEY}.  
